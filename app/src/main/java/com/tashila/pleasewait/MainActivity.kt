@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        //val progressDialog = android.app.ProgressDialog(this)
         val progressDialog = ProgressDialog()
         binding.show.setOnClickListener {
             progressDialog.show(this)
