@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tashila.pleasewait.databinding.DialogProgressBinding
 
-class ProgressDialog : DialogFragment() {
+class ProgressDialog(private val context: Context) : DialogFragment() {
     private lateinit var binding: DialogProgressBinding
     var title = ""
     var message = ""
@@ -21,7 +21,7 @@ class ProgressDialog : DialogFragment() {
         binding = DialogProgressBinding.inflate(layoutInflater)
 
         //build dialog
-        val dialog = MaterialAlertDialogBuilder(requireActivity())
+        val dialog = MaterialAlertDialogBuilder(context)
             .setView(binding.root)
             .create()
 
@@ -36,7 +36,7 @@ class ProgressDialog : DialogFragment() {
         return dialog
     }
 
-    fun show(context: Context) {
+    fun show() {
         val fragmentManager = (context as? FragmentActivity)?.supportFragmentManager
         show(fragmentManager!!, null)
     }
