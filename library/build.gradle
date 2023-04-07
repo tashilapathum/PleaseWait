@@ -43,10 +43,10 @@ publishing {
         release(MavenPublication) {
             groupId = 'io.github.tashilapathum'
             artifactId = 'please-wait'
-            version = '0.1.1'
+            version = '0.1.2'
 
             pom {
-                name = 'PleaseWait'
+                name = 'please-wait'
                 description = 'A lightweight Material 3 library to replace ProgressDialog from Android'
                 url = 'https://github.com/tashilapathum/PleaseWait'
                 licenses {
@@ -73,16 +73,12 @@ publishing {
 }
 
 signing {
-    useInMemoryPgpKeys(
-            properties.getProperty("OSS_SIGNING_KEY_ID"),
-            properties.getProperty("OSS_SIGNING_KEY"),
-            properties.getProperty("OSS_SIGNING_PASSWORD"),
-    )
+    useGpgCmd()
     sign publishing.publications
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.10.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     testImplementation 'junit:junit:4.13.2'
