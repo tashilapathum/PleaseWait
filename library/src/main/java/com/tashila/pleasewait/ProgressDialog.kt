@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.tashila.pleasewait.databinding.DialogProgressBinding
 
-class ProgressDialog(private val context: Context) : DialogFragment() {
+public class ProgressDialog(private val context: Context) : DialogFragment() {
     private lateinit var binding: DialogProgressBinding
     var title = ""
     var message = ""

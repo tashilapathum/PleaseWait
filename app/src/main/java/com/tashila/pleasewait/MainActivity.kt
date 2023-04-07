@@ -1,7 +1,7 @@
 package com.tashila.pleasewait
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.tashila.pleasewait.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
