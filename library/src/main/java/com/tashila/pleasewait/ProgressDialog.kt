@@ -36,7 +36,7 @@ public class ProgressDialog(private val context: Context) : DialogFragment() {
         return dialog
     }
 
-    fun show() {
+    public fun show() {
         val fragmentManager = (context as? FragmentActivity)?.supportFragmentManager
         show(fragmentManager!!, null)
     }
