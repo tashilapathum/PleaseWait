@@ -38,33 +38,48 @@ android {
 def properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId = 'io.github.tashilapathum'
-            artifactId = 'please-wait'
-            version = '0.1.3'
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+    from android.sourceSets.main.kotlin.srcDirs
+}
 
-            pom {
-                name = 'please-wait'
-                description = 'A lightweight Material 3 library to replace ProgressDialog from Android'
-                url = 'https://github.com/tashilapathum/PleaseWait'
-                licenses {
-                    license {
-                        name = 'The Apache Software License, Version 2.0'
-                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+artifacts {
+    archives androidSourcesJar
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId = 'io.github.tashilapathum'
+                artifactId = 'please-wait'
+                version = '0.1.6'
+
+                from components.release
+                artifact androidSourcesJar
+
+                pom {
+                    name = 'please-wait'
+                    description = 'A lightweight Material 3 library to replace ProgressDialog from Android'
+                    url = 'https://github.com/tashilapathum/PleaseWait'
+                    licenses {
+                        license {
+                            name = 'The Apache Software License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
                     }
-                }
-                scm {
-                    connection = 'scm:git:github.com/tashilapathum/PleaseWait.git'
-                    developerConnection = 'scm:git:ssh://github.com/tashilapathum/PleaseWait.git'
-                    url = 'https://github.com/tashilapathum/PleaseWait/tree/main'
-                }
-                developers {
-                    developer {
-                        id = 'tashilapathum'
-                        name = 'Tashila Pathum'
-                        email = 'tashila.pathum@gmail.com'
+                    scm {
+                        connection = 'scm:git:github.com/tashilapathum/PleaseWait.git'
+                        developerConnection = 'scm:git:ssh://github.com/tashilapathum/PleaseWait.git'
+                        url = 'https://github.com/tashilapathum/PleaseWait/tree/main'
+                    }
+                    developers {
+                        developer {
+                            id = 'tashilapathum'
+                            name = 'Tashila Pathum'
+                            email = 'tashila.pathum@gmail.com'
+                        }
                     }
                 }
             }

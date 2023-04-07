@@ -16,7 +16,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        val oldProgressDialog = android.app.ProgressDialog(this)
         val progressDialog = ProgressDialog(this)
+        progressDialog.title = "Please wait"
+        progressDialog.message = "Loading..."
         binding.show.setOnClickListener {
             progressDialog.show()
         }
