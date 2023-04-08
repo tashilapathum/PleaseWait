@@ -9,6 +9,10 @@ I understand the reasoning but it means we have to do some more work to prevent 
 This is stil in beta so I would appreciate any feedback :)
 
 
+## Preview
+![Preview](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGFjM2ZlODliNzc2YjJlZjk3ZGQxNDAxNTBiZTliY2Y0ZDRjNmExMyZjdD1n/mitgNrEa2SszFJTUHQ/giphy.gif)
+
+
 ## Features
 - Supports Material 2 the latest Material 3 design
 - Follows Dark and Light mode automatically
