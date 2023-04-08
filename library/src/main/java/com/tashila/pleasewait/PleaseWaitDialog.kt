@@ -1,29 +1,30 @@
 package com.tashila.pleasewait
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.view.Gravity.CENTER
 import android.view.View.GONE
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.tashila.pleasewait.databinding.DialogProgressBinding
+import com.tashila.pleasewait.databinding.PleaseWaitDialogBinding
 
-public class ProgressDialog() : DialogFragment() {
-    private lateinit var binding: DialogProgressBinding
+@SuppressLint("UseRequireInsteadOfGet")
+public class PleaseWaitDialog() : DialogFragment() {
+    private lateinit var binding: PleaseWaitDialogBinding
     private var context: Context? = null
-    public var title = ""
-    public var message = ""
+    private var title = ""
+    private var message = ""
 
     constructor(context: Context) : this() {
         this.context = context
+        title = context.getString(R.string.please_wait_dialog_default_title)
+        message = context.getString(R.string.please_wait_dialog_default_message)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = DialogProgressBinding.inflate(layoutInflater)
+        binding = PleaseWaitDialogBinding.inflate(layoutInflater)
 
         //build dialog
         val dialog = MaterialAlertDialogBuilder(requireActivity())
@@ -36,15 +37,27 @@ public class ProgressDialog() : DialogFragment() {
             message = savedInstanceState.getString(ARG_MESSAGE) ?: ""
         }
 
-        //set params
+        //hide unnecessary views
         if (title.isEmpty() and message.isEmpty())
             binding.textsLayout.visibility = GONE
-        else {
-            binding.title.text = title
-            binding.message.text = message
-        }
+        if (title.isEmpty())
+            binding.title.visibility = GONE
+        if (message.isEmpty())
+            binding.message.visibility = GONE
+
+        //set params
+        binding.title.text = title
+        binding.message.text = message
 
         return dialog
+    }
+
+    public fun setTitle(title: String) {
+        this.title = title
+    }
+
+    public fun setMessage(message: String) {
+        this.message = message
     }
 
     public fun show() {

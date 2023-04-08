@@ -47,5 +47,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     //add the library
-    implementation 'io.github.tashilapathum:please-wait:0.1.6'
+    implementation 'io.github.tashilapathum:please-wait:0.2.0'
 }

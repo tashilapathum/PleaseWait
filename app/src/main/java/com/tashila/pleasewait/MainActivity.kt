@@ -1,6 +1,7 @@
 package com.tashila.pleasewait
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.tashila.pleasewait.databinding.ActivityMainBinding
 
@@ -16,12 +17,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        val oldProgressDialog = android.app.ProgressDialog(this)
-        val progressDialog = ProgressDialog(this)
-        progressDialog.title = "Please wait"
-        progressDialog.message = "Loading..."
         binding.show.setOnClickListener {
-            progressDialog.show()
+            showProgressDialog()
         }
+    }
+
+    private fun showProgressDialog() {
+        val oldProgressDialog = android.app.ProgressDialog(this)
+        val progressDialog = PleaseWaitDialog(this)
+        progressDialog.setTitle("Please wait")
+        progressDialog.setMessage("Loading...")
+        progressDialog.show()
     }
 }
