@@ -18,11 +18,11 @@ This is stil in beta so I would appreciate any feedback :)
 
 ## How to use
 1. Add the dependency to the app-level `build.gradle`. 
+
+<sup>Latest version:</sup> [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait)
 ```gradle
 implementation 'io.github.tashilapathum:please-wait:$latest_version'
 ```
-Latest version:
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait)
 
 2. Intitialize with `Activity` or `Fragment` context and show.
 ```kotlin
@@ -42,3 +42,9 @@ progressDialog.message = "Loading..."
 ```
 progressDialog.dismiss()
 ```
+
+## TODO
+- [ ] Test in Fragments and Dialogs
+- [ ] Add more scenerios to sample app
+- [ ] Add horizontal progress bar
+- [ ] Add determinate progress mode
