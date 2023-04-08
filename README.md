@@ -19,23 +19,21 @@ This is stil in beta so I would appreciate any feedback :)
 ## How to use
 1. Add the dependency to the app-level `build.gradle`. 
 
-<sup>Latest version:</sup> [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait)
+   <sup>Latest version:</sup> [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait)
 ```gradle
 implementation 'io.github.tashilapathum:please-wait:$latest_version'
 ```
 
 2. Intitialize with `Activity` or `Fragment` context and show.
 ```kotlin
-val progressDialog = ProgressDialog(context = this)
-progressDialog.title = "Please wait"
-progressDialog.message = "Loading..."
+val progressDialog = PleaseWaitDialog(context = this)
 progressDialog.show()
 ```
 
 3. Optionally set title and message
 ```kotlin
-progressDialog.title = "Please wait"
-progressDialog.message = "Loading..."
+progressDialog.setTitle("Please wait")
+progressDialog.setMessage("Loading...")
 ```
 
 4. Dismiss when the operation is complete
@@ -46,5 +44,5 @@ progressDialog.dismiss()
 ## TODO
 - [ ] Test in Fragments and Dialogs
 - [ ] Add more scenerios to sample app
-- [ ] Add horizontal progress bar
+- [ ] Add horizontal progress bar option
 - [ ] Add determinate progress mode
