@@ -1,12 +1,10 @@
 # PleaseWait 
 
-PleaseWait is a lightweight library that can be used as a replacement for now deprecated `android.app.ProgressDialog`.
-According to Google the reason to deprecate the good old `ProgressDialog` is:
+PleaseWait is a lightweight library that can be used as a replacement for now-deprecated `android.app.ProgressDialog`.
+According to Google, the reason to deprecate the good old `ProgressDialog` is:
 > ProgressDialog is a modal dialog, which prevents the user from interacting with the app. Instead of using this class, you should use a progress indicator like ProgressBar, which can be embedded in your app's UI.
 
-I understand the reasoning but it means we have to do some more work to prevent the user from doing something unexpected before the operation is finished. Come on, using a progress dialog is so much easier. So I made this library to use in my apps just to avoid those deprecation warnings everywhere and to improve the look of the progress dialog. Also I wanted to learn the process of publishing a library.
-
-This is stil in beta so I would appreciate any feedback :)
+I understand the reasoning but it means we have to do some more work to prevent the user from doing something unexpected before the operation is finished. Come on, using a progress dialog is so much easier. So I made this library to use in my apps to avoid those deprecation warnings everywhere and to improve the look of the progress dialog. Also I wanted to learn the process of publishing a library.
 
 
 ## Preview
@@ -46,6 +44,14 @@ progressDialog.setMessage("Loading...")
 4. Dismiss when the operation is complete
 ```
 progressDialog.dismiss()
+```
+
+## Additional options
+
+- Set title and message by overriding resources on `strings.xml`
+```xml
+<string name="please_wait_dialog_default_title">Please wait</string>
+<string name="please_wait_dialog_default_message">Loading…</string>
 ```
 
 ## TODO
