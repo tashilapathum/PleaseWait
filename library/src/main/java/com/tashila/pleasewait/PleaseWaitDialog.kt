@@ -39,7 +39,7 @@ public class PleaseWaitDialog() : DialogFragment() {
         binding = PleaseWaitDialogBinding.inflate(layoutInflater)
 
         // Restore saved state
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null) {`
             title = savedInstanceState.getString(ARG_TITLE) ?: ""
             message = savedInstanceState.getString(ARG_MESSAGE) ?: ""
             isIndeterminate = savedInstanceState.getBoolean(ARG_IS_INDETERMINATE)
