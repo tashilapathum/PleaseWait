@@ -8,14 +8,19 @@ I understand the reasoning but it means we have to do some more work to prevent 
 
 
 ## Preview
-![Preview](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGFjM2ZlODliNzc2YjJlZjk3ZGQxNDAxNTBiZTliY2Y0ZDRjNmExMyZjdD1n/mitgNrEa2SszFJTUHQ/giphy.gif)
-
+| Indeterminate mode | Determinate mode | Dark and light modes |
+| --- | --- | --- |
+| ![Preview](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjczMmM0NzE1N2FlMmI3NmU5ZDYyODZmNWIzZjlhMjk3ZGZhMGU3YSZjdD1n/WxR15UuJyCwBzhpEYj/giphy.gif) | ![Preview](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzc0YmQ5ZTBhMDU0YWNkOTJlMjIyOThlNGE0ZDQ3OTJjNTA0NTM2NiZjdD1n/dPOJQYUIjGCzMBd31N/giphy.gif) | ![Preview](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDAxYjM1YTkwNDUzM2ZkYzg4YTdmNGE5ODlkMThmNTRhZmExNGUxYyZjdD1n/Z7aZNVYnjYEgTbTZS2/giphy.gif) | 
 
 ## Features
 - Supports Material 2 and the latest Material 3 design
+- Both determinate and indeterminate progress modes
+- Both circular and linear progress bars
 - Follows Dark and Light modes automatically
 - Adapts to your app's theme colors
 - Retains state between orientation changes
+- Smooth Material animations and transitions
+- Lightweight and Easy to implement
 
 
 ## How to use
@@ -26,20 +31,17 @@ I understand the reasoning but it means we have to do some more work to prevent 
 implementation 'io.github.tashilapathum:please-wait:$latest_version'
 ```
 
-
 2. Intitialize with `Activity` or `Fragment` context and show.
 ```kotlin
 val progressDialog = PleaseWaitDialog(context = this)
 progressDialog.show()
 ```
 
-
 3. Optionally set title and message
 ```kotlin
 progressDialog.setTitle("Please wait")
 progressDialog.setMessage("Loading...")
 ```
-
 
 4. Dismiss when the operation is complete
 ```
@@ -48,14 +50,24 @@ progressDialog.dismiss()
 
 ## Additional options
 
-- Set title and message by overriding resources on `strings.xml`
+- Choose progress style: `CIRCULAR`, `LINEAR`, `BOTH` or `NONE`. Default is `CIRCULAR`
+```kotlin
+progressDialog.setProgressStyle(PleaseWaitDialog.ProgressStyle.LINEAR)
+```
+
+- Set determinate or indeterminate mode. Default is `true`.
+```kotlin
+progressDialog.setIndeterminate(false)
+```
+
+- Set progress. You can just set the progress and the progress bars will smoothly animate from indeterminate to determinate mode.
+```kotlin
+progressDialog.setProgress(20)
+```
+
+- Set title and message by overriding resources on `strings.xml`. Does not have a title or message by default. 
 ```xml
 <string name="please_wait_dialog_default_title">Please wait</string>
 <string name="please_wait_dialog_default_message">Loading…</string>
 ```
 
-## TODO
-- [x] Test in Fragments and Dialogs
-- [ ] Add more scenerios to sample app
-- [ ] Add horizontal progress bar option
-- [ ] Add determinate progress mode
