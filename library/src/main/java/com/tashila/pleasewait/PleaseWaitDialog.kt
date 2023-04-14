@@ -122,11 +122,6 @@ public class PleaseWaitDialog() : DialogFragment() {
         this.progressStyle = progressStyle
     }
 
-    /** Sets the alignment of both [title] and [message]. Default value is [].*/
-    public fun setTextAlignment(alignment: Int) {
-
-    }
-
     /** Shows the progress dialog */
     public fun show() {
         val fragmentManager = (context as? FragmentActivity)?.supportFragmentManager
