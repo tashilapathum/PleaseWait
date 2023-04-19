@@ -1,6 +1,6 @@
 # PleaseWait 
 
-PleaseWait is a lightweight library that can be used as a replacement for now-deprecated `android.app.ProgressDialog`.
+PleaseWait is a lightweight library that can be used as a drop-in replacement for now-deprecated `android.app.ProgressDialog`.
 According to Google, the reason to deprecate the good old `ProgressDialog` is:
 > ProgressDialog is a modal dialog, which prevents the user from interacting with the app. Instead of using this class, you should use a progress indicator like ProgressBar, which can be embedded in your app's UI.
 
@@ -12,6 +12,7 @@ I understand the reasoning but it means we have to do some more work to prevent 
 | --- | --- | --- |
 | ![Preview](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZjczMmM0NzE1N2FlMmI3NmU5ZDYyODZmNWIzZjlhMjk3ZGZhMGU3YSZjdD1n/WxR15UuJyCwBzhpEYj/giphy.gif) | ![Preview](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzc0YmQ5ZTBhMDU0YWNkOTJlMjIyOThlNGE0ZDQ3OTJjNTA0NTM2NiZjdD1n/dPOJQYUIjGCzMBd31N/giphy.gif) | ![Preview](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDAxYjM1YTkwNDUzM2ZkYzg4YTdmNGE5ODlkMThmNTRhZmExNGUxYyZjdD1n/Z7aZNVYnjYEgTbTZS2/giphy.gif) | 
 
+
 ## Features
 - Supports Material 2 and the latest Material 3 design
 - Both determinate and indeterminate progress modes
@@ -21,6 +22,7 @@ I understand the reasoning but it means we have to do some more work to prevent 
 - Retains state between orientation changes
 - Smooth Material animations and transitions
 - Lightweight and Easy to implement
+- Fully interoperable with Java
 
 
 ## How to use
@@ -48,6 +50,7 @@ progressDialog.setMessage("Loading...")
 progressDialog.dismiss()
 ```
 
+
 ## Additional options
 
 - Choose progress style: `CIRCULAR`, `LINEAR`, `BOTH` or `NONE`. Default is `CIRCULAR`
@@ -71,3 +74,12 @@ progressDialog.setProgress(20)
 <string name="please_wait_dialog_default_message">Loading…</string>
 ```
 
+
+## Java implementation
+```java
+PleaseWaitDialog progressDialog = new PleaseWaitDialog(this);
+progressDialog.seTitle("Please wait");
+progressDialog.setMessage("Loading...");
+progressDialog.setCancelable(false);
+progressDialog.show();
+```
