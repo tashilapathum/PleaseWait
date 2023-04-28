@@ -26,7 +26,10 @@ public class PleaseWaitDialog() : DialogFragment() {
     //values set by the user
     private var title = ""
     private var message = ""
+    private var progress = 0
     private var isIndeterminate = true
+    private var isLinearIndeterminate = true
+    private var isCircularIndeterminate = true
     private var progressStyle = ProgressStyle.CIRCULAR
 
     constructor(context: Context) : this() {
@@ -42,8 +45,11 @@ public class PleaseWaitDialog() : DialogFragment() {
         if (savedInstanceState != null) {
             title = savedInstanceState.getString(ARG_TITLE) ?: ""
             message = savedInstanceState.getString(ARG_MESSAGE) ?: ""
-            isIndeterminate = savedInstanceState.getBoolean(ARG_IS_INDETERMINATE)
+            progress = savedInstanceState.getInt(ARG_PROGRESS)
             progressStyle = savedInstanceState.getInt(ARG_PROGRESS_STYLE)
+            isIndeterminate = savedInstanceState.getBoolean(ARG_IS_INDETERMINATE)
+            isLinearIndeterminate = savedInstanceState.getBoolean(ARG_IS_LINEAR_INDETERMINATE)
+            isCircularIndeterminate = savedInstanceState.getBoolean(ARG_IS_CIRCULAR_INDETERMINATE)
         }
 
         //build dialog
@@ -60,6 +66,7 @@ public class PleaseWaitDialog() : DialogFragment() {
         //find views
         progressBar = binding.progressBar
         progressCircle = binding.progressCircle
+        if (progress > 0) setProgress(progress) //from onRestoreSavedInstanceState
 
         //Hide unnecessary view so the remaining content get centered properly
         if (title.isEmpty() and message.isEmpty())
@@ -77,6 +84,8 @@ public class PleaseWaitDialog() : DialogFragment() {
         //indeterminate state
         progressBar.isIndeterminate = isIndeterminate
         progressCircle.isIndeterminate = isIndeterminate
+        progressBar.isIndeterminate = isLinearIndeterminate
+        progressCircle.isIndeterminate = isCircularIndeterminate
         //progress style
         when(progressStyle) {
             ProgressStyle.LINEAR -> {
@@ -105,16 +114,41 @@ public class PleaseWaitDialog() : DialogFragment() {
         this.message = message
     }
 
-    /**Sets a progress value between 0-100 to show the progress on one or both of circular and linear progress bars*/
+    /**Sets a progress value between 0-100 to show the progress on one or both of circular and linear progress bars.
+     * Use setProgressCompat to smoothly transition from indeterminate mode to determinate mode*/
     public fun setProgress(progress: Int) {
-        //use setProgressCompat to smoothly transition from indeterminate mode to determinate mode
-        progressCircle.setProgressCompat(progress, true)
-        progressBar.setProgressCompat(progress, true)
+        this.progress = progress //for savedInstanceState
+
+        if (!isCircularIndeterminate) { //only circular is determinate
+            progressCircle.setProgressCompat(progress, true)
+            return
+        }
+
+        if (!isLinearIndeterminate) { //only linear is determinate
+            progressBar.setProgressCompat(progress, true)
+            return
+        }
+
+        if (!isIndeterminate) { //both are determinate
+            progressCircle.setProgressCompat(progress, true)
+            progressBar.setProgressCompat(progress, true)
+            return
+        }
     }
 
-    /** Sets whether the shown progress bar(s) is/are indeterminate or not. Default value is true.*/
+    /** Sets shown progress bar(s) as indeterminate or not. Default value is true.*/
     public fun setIndeterminate(isIndeterminate: Boolean) {
         this.isIndeterminate = isIndeterminate
+    }
+
+    /**Sets the the specifies progressbar(s) as determinate or indeterminate. Both progress bars
+     * are indeterminate by default. This method takes precedence over [setIndeterminate]*/
+    public fun setIndeterminate(which: Int, isIndeterminate: Boolean) {
+        when(which) {
+            ProgressStyle.CIRCULAR -> isCircularIndeterminate = isIndeterminate
+            ProgressStyle.LINEAR -> isLinearIndeterminate = isIndeterminate
+            ProgressStyle.BOTH -> this.isIndeterminate = isIndeterminate
+        }
     }
 
     /** Sets the progress bar style. Default value is [ProgressStyle.CIRCULAR].*/
@@ -132,15 +166,21 @@ public class PleaseWaitDialog() : DialogFragment() {
         super.onSaveInstanceState(outState)
         outState.putString(ARG_TITLE, title)
         outState.putString(ARG_MESSAGE, message)
-        outState.putBoolean(ARG_IS_INDETERMINATE, isIndeterminate)
+        outState.putInt(ARG_PROGRESS, progress)
         outState.putSerializable(ARG_PROGRESS_STYLE, progressStyle)
+        outState.putBoolean(ARG_IS_INDETERMINATE, isIndeterminate)
+        outState.putBoolean(ARG_IS_LINEAR_INDETERMINATE, isLinearIndeterminate)
+        outState.putBoolean(ARG_IS_CIRCULAR_INDETERMINATE, isCircularIndeterminate)
     }
 
     companion object {
         private const val ARG_TITLE = "title"
         private const val ARG_MESSAGE = "message"
-        private const val ARG_IS_INDETERMINATE = "isIndeterminate"
+        private const val ARG_PROGRESS = "progress"
         private const val ARG_PROGRESS_STYLE = "progressStyle"
+        private const val ARG_IS_INDETERMINATE = "isIndeterminate"
+        private const val ARG_IS_LINEAR_INDETERMINATE = "isLinearIndeterminate"
+        private const val ARG_IS_CIRCULAR_INDETERMINATE = "isCircularIndeterminate"
     }
 
     /** Determines the style of the progress bar shown */

@@ -23,6 +23,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        //to show progress
+        handler = Handler(Looper.getMainLooper())
+        runnable = object : Runnable {
+            override fun run() {
+                if (progress == 100) {
+                    try {
+                        progressDialog.dismiss()
+                    } catch (e: IllegalStateException) {
+                        Log.e(TAG, "DialogFragment not associated with a fragment manager")
+                    }
+                    progress = 0
+                    handler.removeCallbacks(this)
+                } else {
+                    progress += 10
+                    progressDialog.setProgress(progress)
+                    handler.postDelayed(this, 2000)
+                }
+            }
+
+        }
+
+        //onClick show
         binding.show.setOnClickListener {
             showProgressDialog()
             updateProgress()
@@ -30,11 +52,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showProgressDialog() {
+        handler.removeCallbacks(runnable)
+
         progressDialog = PleaseWaitDialog(this)
         progressDialog.setTitle(getTitleText())
         progressDialog.setMessage(getMessageText())
         progressDialog.setProgressStyle(getProgressStyle())
-        progressDialog.setIndeterminate(getIndeterminate())
+        progressDialog.setIndeterminate(getIndeterminateProgressStyle(), false)
         progressDialog.show()
     }
 
@@ -46,8 +70,15 @@ class MainActivity : AppCompatActivity() {
         return binding.message.editText!!.text.toString().trim()
     }
 
-    private fun getIndeterminate(): Boolean {
-        return binding.indeterminate.isChecked
+    private fun getIndeterminateProgressStyle(): Int {
+        if (binding.chipBoth.isChecked)
+            return PleaseWaitDialog.ProgressStyle.BOTH
+        if (binding.chipCircular.isChecked)
+            return PleaseWaitDialog.ProgressStyle.CIRCULAR
+        if (binding.chipLinear.isChecked)
+            return PleaseWaitDialog.ProgressStyle.LINEAR
+
+        return PleaseWaitDialog.ProgressStyle.NONE
     }
 
     private fun getProgressStyle(): Int {
@@ -62,28 +93,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateProgress() {
-        if (binding.showProgress.isChecked) {
-            handler = Handler(Looper.getMainLooper())
-            runnable = object : Runnable {
-                override fun run() {
-                    if (progress == 100) {
-                        try {
-                            progressDialog.dismiss()
-                        } catch (e: IllegalStateException) {
-                            Log.e(TAG, "DialogFragment not associated with a fragment manager")
-                        }
-                        progress = 0
-                        handler.removeCallbacks(this)
-                    } else {
-                        progress += 10
-                        progressDialog.setProgress(progress)
-                        handler.postDelayed(this, 2000)
-                    }
-                }
-
-            }
+        if (binding.showProgress.isChecked)
             handler.postDelayed(runnable, 2000)
-        }
     }
 
     companion object {

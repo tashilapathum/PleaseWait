@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical|start"
     android:orientation="vertical"
     android:padding="32dp"
-    android:gravity="center_vertical|start"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Samples"
         android:layout_gravity="center"
-        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="24dp"
+        android:text="Samples"
+        android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/title"
@@ -23,9 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
         android:hint="Title">
+
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -34,47 +35,100 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="8dp"
         android:hint="Message">
+
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/indeterminate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="8dp"
-        android:text="Indeterminate"
-        android:checked="true"/>
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/circular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:checked="true"
         android:paddingHorizontal="8dp"
-        android:text="Circular progress bar"
-        android:checked="true"/>
+        android:text="Circular progress bar" />
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/linear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="8dp"
-        android:text="Linear progress bar"/>
+        android:text="Linear progress bar" />
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/show_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="8dp"
-        android:text="Show progress"/>
+        android:text="Show progress" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="Determinate mode" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                app:chipSpacingVertical="0dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipNone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="None"
+                    android:checked="true"
+                    app:chipStrokeWidth="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipBoth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Both bars"
+                    app:chipStrokeWidth="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCircular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Circular bar only"
+                    app:chipStrokeWidth="0dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipLinear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:text="Linear bar only"
+                    app:chipStrokeWidth="0dp" />
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <Button
         android:id="@+id/show"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="16dp"
         android:layout_gravity="center"
-        android:text="Show progress"/>
+        android:layout_marginVertical="16dp"
+        android:text="Show progress" />
 
 </LinearLayout>
