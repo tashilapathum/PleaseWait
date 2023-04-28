@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
                     handler.postDelayed(this, 2000)
                 }
             }
-
         }
 
         //onClick show
