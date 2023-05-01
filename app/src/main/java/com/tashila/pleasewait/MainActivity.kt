@@ -58,7 +58,10 @@ class MainActivity : AppCompatActivity() {
         progressDialog.setMessage(getMessageText())
         progressDialog.setProgressStyle(getProgressStyle())
         progressDialog.setIndeterminate(getIndeterminateProgressStyle(), false)
+        progressDialog.setShowDelay(getShowDelay())
+        progressDialog.setDismissDelay(getDismissDelay())
         progressDialog.show()
+        //progressDialog.dismiss()
     }
 
     private fun getTitleText(): String {
@@ -89,6 +92,22 @@ class MainActivity : AppCompatActivity() {
             return PleaseWaitDialog.ProgressStyle.LINEAR
 
         return PleaseWaitDialog.ProgressStyle.NONE
+    }
+
+    private fun getShowDelay(): Long {
+        val text = binding.showDelay.editText!!.text
+        return if (text.isNotEmpty())
+            text.toString().toLong()
+        else
+            0L
+    }
+
+    private fun getDismissDelay(): Long {
+        val text = binding.dismissDelay.editText!!.text
+        return if (text.isNotEmpty())
+            text.toString().toLong()
+        else
+            0L
     }
 
     private fun updateProgress() {
