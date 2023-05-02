@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         progressDialog.setShowDelay(getShowDelay())
         progressDialog.setDismissDelay(getDismissDelay())
         progressDialog.show()
-        //progressDialog.dismiss()
+        //progressDialog.dismiss() //call dismiss to test DismissDelay
     }
 
     private fun getTitleText(): String {

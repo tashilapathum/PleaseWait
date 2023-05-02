@@ -156,7 +156,7 @@ public class PleaseWaitDialog() : DialogFragment() {
     }
 
     /**Sets the the specifies progressbar(s) as determinate or indeterminate. Both progress bars
-     * are indeterminate by default. This method takes precedence over [setIndeterminate]*/
+     * are indeterminate by default.*/
     public fun setIndeterminate(which: Int, isIndeterminate: Boolean) {
         when (which) {
             ProgressStyle.CIRCULAR -> isCircularIndeterminate = isIndeterminate
@@ -182,8 +182,8 @@ public class PleaseWaitDialog() : DialogFragment() {
     /**Dismisses the dialog after the delay specified in milliseconds.
      * - If you set this value and called [dismiss], the dialog won't be dismissed until
      * the [dismissDelay] has elapsed.
-     * - If a [showDelay] has been set, start counting [dismissDelay] after it's finished
-     * - The countdown starts after calling [show]*/
+     * - If a [showDelay] has been set, [dismissDelay] timer starts after [showDelay] has finished.
+     * - The countdown starts after calling [show].*/
     public fun setDismissDelay(dismissDelay: Long) {
         if (showDelay == 0L)
             this.dismissDelay = dismissDelay
@@ -192,8 +192,8 @@ public class PleaseWaitDialog() : DialogFragment() {
         setDismissTimer()
     }
 
-    /** If a [showDelay] has been set, don't show the dialog and start the [showTimer].
-     * Otherwise show the dialog as usual.*/
+    /** Shows the dialog.
+     * If a [showDelay] has been set, the dialog isn't shown and the [showTimer] starts.*/
     public fun show() {
         val fragmentManager = (context as? FragmentActivity)?.supportFragmentManager
         if (showDelay == 0L) {
@@ -209,8 +209,8 @@ public class PleaseWaitDialog() : DialogFragment() {
         }
     }
 
-    /** If a [dismissDelay] has been set, don't dismiss the dialog and start the [dismissTimer].
-     * Otherwise dismiss the dialog as usual.*/
+    /** Dismisses the dialog.
+     * If a [dismissDelay] has been set, the dialog doesn't get dismissed and the [dismissTimer] starts.*/
     override fun dismiss() {
         if (dismissDelay == 0L) {
             try {
@@ -276,13 +276,13 @@ public class PleaseWaitDialog() : DialogFragment() {
 
     /** Determines the style of the progress bar shown */
     public object ProgressStyle {
-        /**Shows only the indeterminate circular progress spinner*/
+        /**Shows only the circular progress bar*/
         const val CIRCULAR = 0
-        /**Shows only the linear horizontal progress bar*/
+        /**Shows only the linear progress bar*/
         const val LINEAR = 1
         /**Shows both circular and linear progress bars*/
         const val BOTH = 2
-        /**Hides both progress bars and shows only the two texts*/
+        /**Hides both progress bars and shows only the title and message texts*/
         const val NONE = 3
     }
 
