@@ -1,4 +1,5 @@
 # PleaseWait 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait)
 
 PleaseWait is a lightweight library that can be used as a drop-in replacement for now-deprecated `android.app.ProgressDialog`.
 According to Google, the reason to deprecate the good old `ProgressDialog` is:
@@ -28,9 +29,8 @@ I understand the reasoning but it means we have to do some more work to prevent 
 ## How to use
 1. Add the dependency to the app-level `build.gradle`. 
 
-   <sup>Latest version:</sup> [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait)
 ```gradle
-implementation 'io.github.tashilapathum:please-wait:$latest_version'
+implementation 'io.github.tashilapathum:please-wait:0.4.0'
 ```
 
 2. Intitialize with `Activity` or `Fragment` context and show.
@@ -60,7 +60,8 @@ progressDialog.setProgressStyle(PleaseWaitDialog.ProgressStyle.LINEAR)
 
 - Set determinate or indeterminate mode. Default is `true`.
 ```kotlin
-progressDialog.setIndeterminate(false)
+progressDialog.setIndeterminate(false) //apply to both progress bars
+progressDialog.setIndeterminate(ProgressStyle.LINEAR, false) //apply to a specific progress bar
 ```
 
 - Set progress. You can just set the progress and the progress bars will smoothly animate from indeterminate to determinate mode.
@@ -68,7 +69,17 @@ progressDialog.setIndeterminate(false)
 progressDialog.setProgress(20)
 ```
 
-- Set title and message by overriding resources on `strings.xml`. Does not have a title or message by default. 
+- Set a delay before showing to avoid flashing the progress dialog for short operations. The dialog won't be shown if you called `dismiss()` before the time has elapsed.
+```kotlin
+progressDialog.setShowDelay(2000)
+```
+
+- Set a delay before dismissing the dialog to show the dialog for a minimum amount of time.
+```kotlin
+progressDialog.setDismissDelay(3000)
+```
+
+- Set title and message by overriding resources on `strings.xml`. There's no title or message by default. 
 ```xml
 <string name="please_wait_dialog_default_title">Please wait</string>
 <string name="please_wait_dialog_default_message">Loading…</string>
