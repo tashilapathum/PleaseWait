@@ -18,6 +18,8 @@ I understand the reasoning but it means we have to do some more work to prevent 
 - Supports Material 2 and the latest Material 3 design
 - Both determinate and indeterminate progress modes
 - Both circular and linear progress bars
+- Ability to set a delay before showing
+- Ability to set a minimum duration to show the dialog
 - Follows Dark and Light modes automatically
 - Adapts to your app's theme colors
 - Retains state between orientation changes
