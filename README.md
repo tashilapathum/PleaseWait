@@ -91,7 +91,7 @@ progressDialog.setDismissDelay(3000)
 ## Java implementation
 ```java
 PleaseWaitDialog progressDialog = new PleaseWaitDialog(this);
-progressDialog.seTitle("Please wait");
+progressDialog.setTitle("Please wait");
 progressDialog.setMessage("Loading...");
 progressDialog.setCancelable(false);
 progressDialog.show();
