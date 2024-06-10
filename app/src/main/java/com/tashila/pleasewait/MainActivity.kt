@@ -1,9 +1,11 @@
 package com.tashila.pleasewait
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.tashila.pleasewait.databinding.ActivityMainBinding
 
@@ -43,10 +45,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        //onClick show
-        binding.show.setOnClickListener {
-            showProgressDialog()
-            updateProgress()
+        //onClick listeners
+        binding.apply {
+            show.setOnClickListener {
+                showProgressDialog()
+                updateProgress()
+            }
+            showCustom.setOnClickListener {
+                showCustomDialog()
+            }
+            javaActivity.setOnClickListener {
+                startActivity(Intent(this@MainActivity, JavaMainActivity::class.java))
+            }
         }
     }
 
@@ -113,6 +123,11 @@ class MainActivity : AppCompatActivity() {
     private fun updateProgress() {
         if (binding.showProgress.isChecked)
             handler.postDelayed(runnable, 2000)
+    }
+
+    private fun showCustomDialog() {
+        val customDialog = CustomProgressDialog(this)
+        customDialog.show()
     }
 
     companion object {

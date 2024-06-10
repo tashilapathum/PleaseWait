@@ -160,8 +160,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginVertical="16dp"
-            android:text="Show progress" />
+            android:layout_marginTop="16dp"
+            android:text="Show dialog" />
+
+        <Button
+            android:id="@+id/showCustom"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Show custom dialog" />
+
+        <Button
+            android:id="@+id/javaActivity"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="Java activity" />
 
     </LinearLayout>
 </ScrollView>

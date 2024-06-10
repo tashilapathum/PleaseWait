@@ -18,7 +18,7 @@ import java.util.Timer
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.ScheduledThreadPoolExecutor
 
-public class PleaseWaitDialog() : DialogFragment() {
+public open class PleaseWaitDialog() : DialogFragment() {
     private var context: Context? = null
     private lateinit var binding: PleaseWaitDialogBinding
     private lateinit var dialog: AlertDialog
