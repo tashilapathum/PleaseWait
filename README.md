@@ -5,7 +5,7 @@ PleaseWait is a lightweight library that can be used as a drop-in replacement fo
 According to Google, the reason to deprecate the good old `ProgressDialog` is:
 > ProgressDialog is a modal dialog, which prevents the user from interacting with the app. Instead of using this class, you should use a progress indicator like ProgressBar, which can be embedded in your app's UI.
 
-I understand the reasoning but it means we have to do some more work to prevent the user from doing something unexpected before the operation is finished. Come on, using a progress dialog is so much easier. So I made this library to use in my apps to avoid those deprecation warnings everywhere and to improve the look of the progress dialog. Also I wanted to learn the process of publishing a library.
+I understand the reasoning but it means we have to do some more work to prevent the user from doing something unexpected before the operation is finished. But come on, using a progress dialog is so much easier. So I made this library to use in my apps to avoid those deprecation warnings everywhere and to improve the look of the progress dialog. Also I wanted to learn the process of publishing a library.
 
 
 ## Preview
@@ -32,7 +32,7 @@ I understand the reasoning but it means we have to do some more work to prevent 
 1. Add the dependency to the app-level `build.gradle`. 
 
 ```gradle
-implementation 'io.github.tashilapathum:please-wait:0.4.0'
+implementation 'io.github.tashilapathum:please-wait:0.5.0'
 ```
 
 2. Intitialize with `Activity` or `Fragment` context and show.
