@@ -172,13 +172,21 @@
             android:text="Show custom dialog" />
 
         <Button
+            android:id="@+id/fragment"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Dialog in Fragment" />
+
+        <Button
             android:id="@+id/javaActivity"
             style="@style/Widget.Material3.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
-            android:text="Java activity" />
+            android:text="Dialog in Java Activity" />
 
     </LinearLayout>
 </ScrollView>

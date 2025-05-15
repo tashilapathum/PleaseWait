@@ -54,6 +54,9 @@ class MainActivity : AppCompatActivity() {
             showCustom.setOnClickListener {
                 showCustomDialog()
             }
+            fragment.setOnClickListener {
+                startActivity(Intent(this@MainActivity, TestFragmentActivity::class.java))
+            }
             javaActivity.setOnClickListener {
                 startActivity(Intent(this@MainActivity, JavaMainActivity::class.java))
             }
