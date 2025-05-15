@@ -44,20 +44,13 @@ tasks.register('androidSourcesJar', Jar) {
     from android.sourceSets.main.kotlin.srcDirs
 }
 
-artifacts {
-    archives androidSourcesJar
-}
-
 afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-                groupId = 'io.github.tashilapathum'
+                groupId = 'com.github.tashilapathum'
                 artifactId = 'please-wait'
                 version = '0.5.2'
-
-                from components.release
-                artifact androidSourcesJar
 
                 pom {
                     name = 'please-wait'
