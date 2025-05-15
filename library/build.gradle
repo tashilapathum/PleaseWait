@@ -7,11 +7,11 @@ plugins {
 
 android {
     namespace 'com.tashila.pleasewait'
-    compileSdk 34
+    compileSdk 36
 
     defaultConfig {
         minSdk 21
-        targetSdk 34
+        targetSdk 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -32,6 +32,12 @@ android {
     }
     viewBinding {
         enabled = true
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
     }
 }
 
@@ -54,7 +60,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'io.github.tashilapathum'
                 artifactId = 'please-wait'
-                version = '0.4.0'
+                version = '0.5.1'
 
                 from components.release
                 artifact androidSourcesJar
