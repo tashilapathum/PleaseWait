@@ -8,15 +8,3 @@ plugins {
 
 def properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-nexusPublishing {
-    repositories {
-        sonatype {
-            username = properties.getProperty("sonatypeUsername")
-            password = properties.getProperty("sonatypePassword")
-            stagingProfileId = properties.getProperty("sonatypeStagingProfileId")
-            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
-            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
-        }
-    }
-}

@@ -33,12 +33,6 @@ android {
     viewBinding {
         enabled = true
     }
-    publishing {
-        singleVariant("release") {
-            withSourcesJar()
-            withJavadocJar()
-        }
-    }
 }
 
 def properties = new Properties()
@@ -60,7 +54,7 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = 'io.github.tashilapathum'
                 artifactId = 'please-wait'
-                version = '0.5.1'
+                version = '0.5.2'
 
                 from components.release
                 artifact androidSourcesJar
