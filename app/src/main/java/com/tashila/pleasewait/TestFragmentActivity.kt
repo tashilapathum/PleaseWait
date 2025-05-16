@@ -7,6 +7,7 @@ import com.tashila.pleasewait.databinding.ActivityTestFragmentBinding
 
 class TestFragmentActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTestFragmentBinding
+    val loadingDialog by lazy { PleaseWaitDialog(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

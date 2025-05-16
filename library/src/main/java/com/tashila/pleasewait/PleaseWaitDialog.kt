@@ -195,11 +195,13 @@ public open class PleaseWaitDialog() : DialogFragment() {
     /** Shows the dialog.
      * If a [showDelay] has been set, the dialog isn't shown and the [showTimer] starts.*/
     public fun show() {
-        val fragmentManager = (context as? FragmentActivity)?.supportFragmentManager
+        val fragmentManager = (context as? FragmentActivity)?.supportFragmentManager ?: return
+        val existing = fragmentManager.findFragmentByTag(TAG) as? DialogFragment
+        existing?.dismissAllowingStateLoss() // Remove if already shown
+
         if (showDelay == 0L) {
             try {
-                if (fragmentManager != null)
-                    show(fragmentManager, null)
+                show(fragmentManager, TAG)
             } catch (e: IllegalStateException) {
                 Log.e(TAG, "show: FragmentManager has been destroyed", e)
             }

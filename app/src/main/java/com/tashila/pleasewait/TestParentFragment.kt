@@ -9,7 +9,6 @@ import com.tashila.pleasewait.databinding.FragmentTestBinding
 
 class TestParentFragment : Fragment() {
     private lateinit var binding: FragmentTestBinding
-    private val loadingDialog by lazy { PleaseWaitDialog(requireActivity()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,10 +19,12 @@ class TestParentFragment : Fragment() {
         binding.showFragment.setOnClickListener {
             childFragmentManager
                 .beginTransaction()
-                .add(binding.fragmentContainer.id, TestChildFragment(), "TestFragment2")
+                .add(binding.fragmentContainer.id, TestChildFragment(), "TestChildFragment")
                 .commit()
         }
-        binding.showDialog.setOnClickListener { loadingDialog.show() }
+        binding.showDialog.setOnClickListener {
+            (activity as TestFragmentActivity).loadingDialog.show()
+        }
         return binding.root
     }
 
