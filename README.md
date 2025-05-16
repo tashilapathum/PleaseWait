@@ -1,5 +1,5 @@
 # PleaseWait 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.tashilapathum/please-wait)
+[![](https://jitpack.io/v/tashilapathum/PleaseWait.svg)](https://jitpack.io/#tashilapathum/PleaseWait)
 
 PleaseWait is a lightweight library that can be used as a drop-in replacement for now-deprecated `android.app.ProgressDialog`.
 According to Google, the reason to deprecate the good old `ProgressDialog` is:
