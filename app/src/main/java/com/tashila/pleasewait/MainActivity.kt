@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.tashila.pleasewait.PleaseWaitDialog.ProgressStyle
 import com.tashila.pleasewait.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +51,9 @@ class MainActivity : AppCompatActivity() {
             show.setOnClickListener {
                 showProgressDialog()
                 updateProgress()
+            }
+            showLive.setOnClickListener {
+                showDialogWithUpdates()
             }
             showCustom.setOnClickListener {
                 showCustomDialog()
@@ -132,6 +135,73 @@ class MainActivity : AppCompatActivity() {
     private fun showCustomDialog() {
         val customDialog = CustomProgressDialog(this)
         customDialog.show()
+    }
+
+    fun showDialogWithUpdates() {
+        val dialog = PleaseWaitDialog(this).apply {
+            // Initial setup
+            setTitle("Initial Title")
+            setMessage("Initial Message")
+            setProgressStyle(ProgressStyle.BOTH)
+            setIndeterminate(true)
+            setProgress(0)
+
+            // Show the dialog immediately
+            show()
+        }
+
+        // Update values while dialog is showing
+        Handler(Looper.getMainLooper()).postDelayed({
+            dialog.apply {
+                setTitle("Updated Title 1")
+                setMessage("Updated Message 1")
+                setProgress(25)
+                setIndeterminate(false)
+            }
+        }, 1000)
+
+        // Change progress style and update again
+        Handler(Looper.getMainLooper()).postDelayed({
+            dialog.apply {
+                setProgressStyle(ProgressStyle.LINEAR)
+                setTitle("Updated Title 2")
+                setMessage("Updated Message 2")
+                setProgress(50)
+            }
+        }, 2000)
+
+        // Test indeterminate states
+        Handler(Looper.getMainLooper()).postDelayed({
+            dialog.apply {
+                setIndeterminate(ProgressStyle.CIRCULAR, true)
+                setIndeterminate(ProgressStyle.LINEAR, false)
+                setProgress(75)
+            }
+        }, 3000)
+
+        // Test hiding progress bars completely
+        Handler(Looper.getMainLooper()).postDelayed({
+            dialog.apply {
+                setProgressStyle(ProgressStyle.NONE)
+                setTitle("Updated Title 3")
+                setMessage("Updated Message 3")
+            }
+        }, 4000)
+
+        // Show progress bars back again
+        Handler(Looper.getMainLooper()).postDelayed({
+            dialog.apply {
+                setProgressStyle(ProgressStyle.BOTH)
+            }
+        }, 5000)
+
+        // Hide all the text
+        Handler(Looper.getMainLooper()).postDelayed({
+            dialog.apply {
+                setTitle("")
+                setMessage("")
+            }
+        }, 6000)
     }
 
     companion object {

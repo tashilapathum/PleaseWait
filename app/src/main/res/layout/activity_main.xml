@@ -161,7 +161,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:text="Show dialog" />
+            android:text="Show dialog with selected params" />
+
+        <Button
+            android:id="@+id/showLive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="Show a dialog with live updates" />
 
         <Button
             android:id="@+id/showCustom"
@@ -169,7 +178,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Show custom dialog" />
+            android:text="Show a custom dialog" />
 
         <Button
             android:id="@+id/fragment"

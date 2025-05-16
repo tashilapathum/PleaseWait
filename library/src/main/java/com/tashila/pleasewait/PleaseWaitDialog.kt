@@ -68,7 +68,9 @@ public open class PleaseWaitDialog() : DialogFragment() {
             .create()
 
         init()
-        setParams()
+        updateTextVisibility()
+        updateIndeterminateStates()
+        updateProgressStyle()
 
         return dialog
     }
@@ -88,29 +90,42 @@ public open class PleaseWaitDialog() : DialogFragment() {
             binding.message.visibility = GONE
     }
 
-    private fun setParams() {
-        //title
-        binding.title.text = title
-        //message
-        binding.message.text = message
-        //indeterminate state
+    private fun isShowing(): Boolean {
+        return isAdded && ::dialog.isInitialized && dialog.isShowing
+    }
+
+    private fun updateTextVisibility() {
+        val titleEmpty = title.isEmpty()
+        val messageEmpty = message.isEmpty()
+
+        binding.textsLayout.visibility = if (titleEmpty && messageEmpty) GONE else VISIBLE
+        binding.title.visibility = if (titleEmpty) GONE else VISIBLE
+        binding.message.visibility = if (messageEmpty) GONE else VISIBLE
+    }
+
+    private fun updateIndeterminateStates() {
         progressBar.isIndeterminate = isIndeterminate
         progressCircle.isIndeterminate = isIndeterminate
         progressBar.isIndeterminate = isLinearIndeterminate
         progressCircle.isIndeterminate = isCircularIndeterminate
-        //progress style
+    }
+
+    private fun updateProgressStyle() {
         when (progressStyle) {
             ProgressStyle.LINEAR -> {
                 progressCircle.visibility = GONE
                 progressBar.visibility = VISIBLE
             }
-
             ProgressStyle.BOTH -> {
+                progressCircle.visibility = VISIBLE
                 progressBar.visibility = VISIBLE
             }
-
             ProgressStyle.NONE -> {
                 progressCircle.visibility = GONE
+                progressBar.visibility = GONE
+            }
+            else -> { // CIRCULAR
+                progressCircle.visibility = VISIBLE
                 progressBar.visibility = GONE
             }
         }
@@ -121,11 +136,19 @@ public open class PleaseWaitDialog() : DialogFragment() {
     /**Sets the larger top text*/
     public fun setTitle(title: String) {
         this.title = title
+        if (isShowing()) {
+            binding.title.text = title
+            updateTextVisibility()
+        }
     }
 
     /**Sets the smaller bottom text*/
     public fun setMessage(message: String) {
         this.message = message
+        if (isShowing()) {
+            binding.message.text = message
+            updateTextVisibility()
+        }
     }
 
     /**Sets a progress value between 0-100 to show the progress on one or both of circular and linear progress bars.
@@ -153,6 +176,9 @@ public open class PleaseWaitDialog() : DialogFragment() {
     /** Sets shown progress bar(s) as indeterminate or not. Default value is true.*/
     public fun setIndeterminate(isIndeterminate: Boolean) {
         this.isIndeterminate = isIndeterminate
+        if (isShowing()) {
+            updateIndeterminateStates()
+        }
     }
 
     /**Sets the the specifies progressbar(s) as determinate or indeterminate. Both progress bars
@@ -163,11 +189,17 @@ public open class PleaseWaitDialog() : DialogFragment() {
             ProgressStyle.LINEAR -> isLinearIndeterminate = isIndeterminate
             ProgressStyle.BOTH -> this.isIndeterminate = isIndeterminate
         }
+        if (isShowing()) {
+            updateIndeterminateStates()
+        }
     }
 
     /** Sets the progress bar style. Default value is [ProgressStyle.CIRCULAR].*/
     public fun setProgressStyle(progressStyle: Int) {
         this.progressStyle = progressStyle
+        if (isShowing()) {
+            updateProgressStyle()
+        }
     }
 
     /**Shows the dialog after the delay specified in milliseconds.
