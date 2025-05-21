@@ -32,7 +32,7 @@ I understand the reasoning but it means we have to do some more work to prevent 
 1. Add the dependency to the app-level `build.gradle`. 
 
 ```gradle
-implementation 'com.github.tashilapathum:please-wait:0.6.0'
+implementation 'com.github.tashilapathum:PleaseWait:0.6.0'
 ```
 
 2. Intitialize with `Activity` or `Fragment` context and show.
