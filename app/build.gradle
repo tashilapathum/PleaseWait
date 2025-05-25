@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.tashila.pleasewait'
+    namespace 'com.tashila.pleasewait.sample'
     compileSdk 36
 
     defaultConfig {

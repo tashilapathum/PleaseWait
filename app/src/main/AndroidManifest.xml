@@ -12,15 +12,15 @@
         android:theme="@style/Theme.PleaseWait"
         tools:targetApi="31">
         <activity
-            android:name=".TestFragmentActivity"
+            android:name="com.tashila.pleasewait.TestFragmentActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"  />
+            android:parentActivityName="com.tashila.pleasewait.MainActivity"  />
         <activity
-            android:name=".JavaMainActivity"
+            android:name="com.tashila.pleasewait.JavaMainActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.tashila.pleasewait.MainActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.tashila.pleasewait.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
