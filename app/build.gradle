@@ -36,7 +36,7 @@ android {
 }
 
 dependencies {
-    implementation project(':library') //for development
+    //implementation project(':library') //for development
 
     implementation 'androidx.core:core-ktx:1.13.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -48,5 +48,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     //add the library
-    //implementation 'io.github.tashilapathum:please-wait:0.4.0'
+    implementation 'com.github.tashilapathum:PleaseWait:0.6.2'
 }
