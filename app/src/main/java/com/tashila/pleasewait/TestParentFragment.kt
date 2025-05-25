@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.tashila.pleasewait.databinding.FragmentTestBinding
+import com.tashila.pleasewait.sample.databinding.FragmentTestBinding
 
 class TestParentFragment : Fragment() {
     private lateinit var binding: FragmentTestBinding
