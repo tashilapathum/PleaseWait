@@ -32,6 +32,13 @@ android {
     viewBinding {
         enabled = true
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 def properties = new Properties()
