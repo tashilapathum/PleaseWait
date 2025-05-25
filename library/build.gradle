@@ -51,7 +51,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.tashilapathum'
                 artifactId = 'PleaseWait'
-                version = '0.6.3'
+                version = '0.6.4'
             }
         }
     }
